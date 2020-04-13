@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media; //ADDED HERE!!
 using Microsoft.Xna.Framework.Audio; //ADDED HERE!!
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace BalloonGame
 {
@@ -57,6 +58,9 @@ namespace BalloonGame
             MediaPlayer.Play(Content.Load<Song>("snd_music"));  //ADDED HERE!!
 
             float angle;
+            double opposite = Mouse.Y - barrelPosition.Y;
+            double adjacent = Mouse.X - barrelPosition.X;
+            angle = (float)Math.Atan2(opposite, adjacent);
 
             //SoundEffect mySound = Content.Load<SoundEffect>("scream"); //ADDED HERE!!
 
