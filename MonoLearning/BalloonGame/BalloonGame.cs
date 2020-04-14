@@ -16,6 +16,7 @@ namespace BalloonGame
         SpriteBatch spriteBatch;
         Texture2D balloon, background, cannonBarrel; // ADDED HERE!!
         Vector2 balloonPosition, barrelPosition, barrelOrigin; // ADDED HERE!!
+        float angle;
 
 
         public BalloonGame()
@@ -57,10 +58,6 @@ namespace BalloonGame
 
             MediaPlayer.Play(Content.Load<Song>("snd_music"));  //ADDED HERE!!
 
-            float angle;
-            double opposite = Mouse.Y - barrelPosition.Y;
-            double adjacent = Mouse.X - barrelPosition.X;
-            angle = (float)Math.Atan2(opposite, adjacent);
 
             //SoundEffect mySound = Content.Load<SoundEffect>("scream"); //ADDED HERE!!
 
@@ -89,6 +86,12 @@ namespace BalloonGame
 
             MouseState currentMouseState = Mouse.GetState();
             balloonPosition = new Vector2(currentMouseState.X, currentMouseState.Y);
+
+            
+            double opposite = currentMouseState.Y - barrelPosition.Y;
+            double adjacent = currentMouseState.X - barrelPosition.X;
+            angle = (float)Math.Atan2(opposite, adjacent);
+
 
             base.Update(gameTime);
         }
