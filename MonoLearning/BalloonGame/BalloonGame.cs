@@ -24,7 +24,6 @@ namespace BalloonGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;  //Added Here!!
-
         }
 
         /// <summary>
@@ -87,10 +86,20 @@ namespace BalloonGame
             MouseState currentMouseState = Mouse.GetState();
             balloonPosition = new Vector2(currentMouseState.X, currentMouseState.Y);
 
-            
-            double opposite = currentMouseState.Y - barrelPosition.Y;
-            double adjacent = currentMouseState.X - barrelPosition.X;
-            angle = (float)Math.Atan2(opposite, adjacent);
+            ButtonState left = currentMouseState.LeftButton;
+
+            if (left == ButtonState.Pressed)
+            {
+                double opposite = currentMouseState.Y - barrelPosition.Y;
+                double adjacent = currentMouseState.X - barrelPosition.X;
+                angle = (float)Math.Atan2(opposite, adjacent);
+            }
+
+            if (left != ButtonState.Pressed)
+            {
+                angle = 0;
+            }
+
 
 
             base.Update(gameTime);
